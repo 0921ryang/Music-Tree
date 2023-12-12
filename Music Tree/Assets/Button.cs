@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public ReactiveProperty<bool> click1
+    public ReactiveProperty<bool> Click1
     {
         get => _click;
     }

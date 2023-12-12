@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7805527457250806479}
   - component: {fileID: 8694379596916741020}
   - component: {fileID: 2235396517344302229}
-  - component: {fileID: -4485637173402776506}
+  - component: {fileID: 3470748482428641519}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -113,7 +113,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 3
 --- !u!114 &7805527457250806479
 MonoBehaviour:
@@ -128,6 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 693d655f59c3504449459766b273a066, type: 3}
+  transformObject: {fileID: 7506769357813880969}
+  isMove: 0
 --- !u!65 &8694379596916741020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -170,7 +172,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!82 &-4485637173402776506
+--- !u!82 &3470748482428641519
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +182,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 693d655f59c3504449459766b273a066, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7d1ec33358c6acf499b1b602aed23545, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -191,9 +193,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 2
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -241,7 +243,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.35277778
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0

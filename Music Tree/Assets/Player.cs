@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Debug.Log("collision");
+        _rigidbody.velocity = other.rigidbody.velocity;
+    }
+
+    private void OnCollisionStay(Collision other)
+    {
+        _rigidbody.velocity = other.rigidbody.velocity;
     }
 }
