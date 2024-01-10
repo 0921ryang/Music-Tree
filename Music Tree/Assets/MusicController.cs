@@ -7,7 +7,7 @@ public class MusicController : MonoBehaviour
     public List<AudioClip> music;
     public List<Button> buttons;
     public GameObject platform;// prefab
-    public List<Platform> platforms = new List<Platform>();// intend to save all the plaforms
+    public List<Platform> platforms = new List<Platform>();// save all the plaforms
     
     void Start()
     {
@@ -27,7 +27,7 @@ public class MusicController : MonoBehaviour
             }).AddTo(this);
         }
         
-        // send signal to Platform to move
+        // set target and send signal to platform to move
         platforms[1].transformObject = platforms[0].transform;
         platforms[1].isMove = true;
     }
