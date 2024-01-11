@@ -1,16 +1,23 @@
+using System;
 using UniRx;
 using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public ReactiveProperty<bool> Click1
+    public ReactiveProperty<GameObject> Click1
     {
         get => _click;
     }
 
-    private ReactiveProperty<bool> _click = new ReactiveProperty<bool>(false);
+    private ReactiveProperty<GameObject> _click;
+
+    private void Awake()
+    {
+        _click = new();
+    }
+
     public void OnClick()
     {
-        _click.Value = true;
+        _click.Value = gameObject;
     }
 }

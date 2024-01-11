@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, ICharacterSignals
 {
     [Header("References")]
-    [SerializeField] private PlayerControllerInput playerController;
+    public PlayerControllerInput playerController;
     private CharacterController _characterController;
     private Camera _camera;
     
@@ -147,6 +147,23 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
             euler.x = Mathf.Clamp(euler.x, -maxLookAngle, -minLookAngle);
             _camera.transform.localRotation = Quaternion.Euler(euler);
         }).AddTo(this);
+
+        playerController.hasUI
+            .Subscribe(hasUI =>
+            {
+                if (hasUI)
+                {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    playerController.playerInput.Player.Disable();
+                }
+                else
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    playerController.playerInput.Player.Enable();
+                }
+            }).AddTo(this);
     }
 
     private IEnumerator Crouch()

@@ -11,7 +11,7 @@ public class PlayerControllerInput : MonoBehaviour
     private ReadOnlyReactiveProperty<bool> _run;
     private ReadOnlyReactiveProperty<bool> _jump;
     private ReadOnlyReactiveProperty<bool> _crouch;
-    private ReadOnlyReactiveProperty<bool> _flashLight;
+    public ReactiveProperty<bool> hasUI;
 
     public PlayerInput playerInput => _playerInput;
     public ReadOnlyReactiveProperty<bool> crouch => _crouch;
@@ -19,7 +19,6 @@ public class PlayerControllerInput : MonoBehaviour
     public IObservable<Vector2> look => _look;
     public ReadOnlyReactiveProperty<bool> run => _run;
     public ReadOnlyReactiveProperty<bool> jump => _jump;
-    public ReadOnlyReactiveProperty<bool> flashLight => _flashLight;
 
     private void Awake()
     {
