@@ -25,7 +25,6 @@ public class MusicController : MonoBehaviour
                 platforms.Add(plat.GetComponent<Platform>());
                 Debug.Log("receive");
                 click.SetActive(false);
-                playerControllerInput.hasUI.Value = false;
             }).AddTo(this);
         }
         

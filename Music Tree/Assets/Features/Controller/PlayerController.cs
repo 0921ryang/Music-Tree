@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
     private List<float> _heightList = new();
     private List<Vector3> _cameraPosList = new();
     private List<Vector3> _centerList = new();
-
-    private Vector3 _cameraCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
     
     //bearbeiten ICharacterSignals
     private Subject<Vector3> _moved = new();
@@ -148,23 +146,6 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
             euler.x = Mathf.Clamp(euler.x, -maxLookAngle, -minLookAngle);
             _camera.transform.localRotation = Quaternion.Euler(euler);
         }).AddTo(this);
-
-        playerController.hasUI
-            .Subscribe(hasUI =>
-            {
-                if (hasUI)
-                {
-                    Cursor.visible = true;
-                    Cursor.lockState = CursorLockMode.None;
-                    playerController.playerInput.Player.Disable();
-                }
-                else
-                {
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                    playerController.playerInput.Player.Enable();
-                }
-            }).AddTo(this);
     }
 
     private IEnumerator Crouch()
@@ -228,15 +209,5 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         _centerList = new List<Vector3>();
         
         _doingCrouch = false;
-    }
-
-    private void Update()
-    {
-        Ray ray = _camera.ScreenPointToRay(_cameraCenter);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && hit.distance < 50f && hit.transform.CompareTag("box"))
-        {
-            
-        }
     }
 }
