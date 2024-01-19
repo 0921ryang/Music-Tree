@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, ICharacterSignals
 {
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
 
         _moved.AddTo(this);
         _isRunning = new ReactiveProperty<bool>(false);
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
@@ -209,5 +211,13 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         _centerList = new List<Vector3>();
         
         _doingCrouch = false;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.CompareTag("Platform"))
+        {
+            SceneManager.LoadScene(hit.gameObject.name);
+        }
     }
 }

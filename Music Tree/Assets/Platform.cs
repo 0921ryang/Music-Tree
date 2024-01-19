@@ -1,37 +1,35 @@
+using System;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 public class Platform : MonoBehaviour
 {
     private Rigidbody _rigidbody;
-    private bool _isEnter = false;
-    public AudioClip audioClip;
     public Transform transformObject;
     public bool isMove = false;
-    private AudioSource _audioSource;
+    [SerializeField] private String room;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = audioClip;
         transformObject = transform;
     }
 
     private void Update()
     {
+        /*
         if (isMove)
         {
-            var _pos = transformObject.position;// target
-            var horizontalMove = new Vector3(_pos.x - transform.position.x, 
-                0, _pos.z - transform.position.z);
+            var pos = transformObject.position;// target
+            var horizontalMove = new Vector3(pos.x - transform.position.x, 
+                0, pos.z - transform.position.z);
             horizontalMove.Normalize();
             
             var position = _rigidbody.position;
-            bool x1 = position.x >= _pos.x + 1;
-            bool y1 = position.x <= _pos.x - 1;
-            bool x2 = position.z >= _pos.z + 1;
-            bool y2 = position.z <= _pos.z - 1;
+            bool x1 = position.x >= pos.x + 1;
+            bool y1 = position.x <= pos.x - 1;
+            bool x2 = position.z >= pos.z + 1;
+            bool y2 = position.z <= pos.z - 1;
             if (_rigidbody.position.y <= 25 && (x1 || y1 || x2 || y2))
             {
                 _rigidbody.velocity = Vector3.up * 3;
@@ -42,7 +40,7 @@ public class Platform : MonoBehaviour
             }
             else
             {
-                if (position.y >= _pos.y + 1)
+                if (position.y >= pos.y + 1)
                 {
                     _rigidbody.velocity = Vector3.down * 5f;
                 }
@@ -52,15 +50,6 @@ public class Platform : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (_isEnter == false)
-        {
-            Debug.Log("music play");
-            _audioSource.Play();
-            _isEnter = true;
-        }
+        */
     }
 }
