@@ -1,19 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TextController : MonoBehaviour
 {
-    [SerializeField] private CharacterController characterController;
+    private GameObject _gameObject;
     void Start()
     {
-        
+        _gameObject = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(characterController.transform);
-        
+        transform.LookAt(_gameObject.transform);
     }
 }
