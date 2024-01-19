@@ -63,7 +63,8 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
 
         _moved.AddTo(this);
         _isRunning = new ReactiveProperty<bool>(false);
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this.gameObject);
+        SceneManager.activeSceneChanged += SceneChanged;
     }
 
     private void Start()
@@ -222,5 +223,10 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         {
             SceneManager.LoadScene("SampleScene");
         }
+    }
+
+    private void SceneChanged(Scene a, Scene b)
+    {
+        _characterController.transform.position = new Vector3(0, 2, 0);
     }
 }
