@@ -180,6 +180,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9eb58dd4350d45b4ab05c7b8dec53b67, type: 2}
+    - target: {fileID: -301513694822366247, guid: 60818d9e057d27f42abebb05082d9db1, type: 3}
+      propertyPath: m_TagString
+      value: Music Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 504780693028693814, guid: 60818d9e057d27f42abebb05082d9db1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

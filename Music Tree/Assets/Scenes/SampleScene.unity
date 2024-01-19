@@ -463,6 +463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: miantree
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c0cf3ad5a390e54982ba645991eec9c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2038879635958813718, guid: 5c0cf3ad5a390e54982ba645991eec9c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

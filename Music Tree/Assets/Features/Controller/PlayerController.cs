@@ -218,6 +218,9 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         if (hit.transform.CompareTag("Platform"))
         {
             SceneManager.LoadScene(hit.gameObject.name);
+        } else if (hit.transform.CompareTag("Music Wall"))
+        {
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }
