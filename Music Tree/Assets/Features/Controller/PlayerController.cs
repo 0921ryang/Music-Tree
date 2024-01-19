@@ -227,9 +227,18 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         if (hit.transform.CompareTag("Platform"))
         {
             SceneManager.LoadScene(hit.gameObject.name);
+            StartCoroutine(SetPos());
         } else if (hit.transform.CompareTag("Music Wall"))
         {
             SceneManager.LoadScene("SampleScene");
+            StartCoroutine(SetPos());
         }
+    }
+    
+    private IEnumerator SetPos()
+    {
+        yield return null;
+        yield return null;
+        _characterController.transform.position = new Vector3(0, 2, 0);
     }
 }
