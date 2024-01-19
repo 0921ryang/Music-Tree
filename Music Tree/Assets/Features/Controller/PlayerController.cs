@@ -51,18 +51,16 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
     public IObservable<Unit> Stepped { get; }
     
     //singleton
-    private static PlayerController instance;
-    private int i = 0;
+    private static PlayerController _instance;
 
     private void Awake()
     {
-        if (instance != null)
+        if (_instance != null)
         {
             Destroy(gameObject);
             return;
         }
-        instance = this;
-        Debug.Log("num " + i++);
+        _instance = this;
         
         _characterController = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<Camera>();
@@ -76,7 +74,6 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         _moved.AddTo(this);
         _isRunning = new ReactiveProperty<bool>(false);
         DontDestroyOnLoad(this.gameObject);
-        SceneManager.activeSceneChanged += SceneChanged;
     }
 
     private void Start()
@@ -137,7 +134,6 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
             {
                 if (!_doingCrouch) StartCoroutine(Crouch());
             }).AddTo(this);
-        Debug.Log("num " + i);
         _camera.transform.localRotation = Quaternion.identity;
         playerController.look.Where(vector => vector != Vector2.zero)
             .Subscribe(rawLook =>
@@ -225,25 +221,15 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         
         _doingCrouch = false;
     }
-
+    
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.transform.CompareTag("Platform"))
         {
             SceneManager.LoadScene(hit.gameObject.name);
-            _characterController.transform.position = new Vector3(0, 2, 0);
-            transform.position = new Vector3(0, 2, 0);
         } else if (hit.transform.CompareTag("Music Wall"))
         {
             SceneManager.LoadScene("SampleScene");
         }
-    }
-
-    private void SceneChanged(Scene a, Scene b)
-    {
-        Debug.Log(SceneManager.GetActiveScene().name);
-        _characterController.transform.position = new Vector3(0, 2, 0);
-        transform.position = new Vector3(0, 2, 0);
-        Debug.Log(transform.position);
     }
 }
