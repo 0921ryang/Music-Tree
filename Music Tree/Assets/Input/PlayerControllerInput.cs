@@ -11,7 +11,6 @@ public class PlayerControllerInput : MonoBehaviour
     private ReadOnlyReactiveProperty<bool> _run;
     private ReadOnlyReactiveProperty<bool> _jump;
     private ReadOnlyReactiveProperty<bool> _crouch;
-    public ReactiveProperty<bool> hasUI;
 
     public PlayerInput playerInput => _playerInput;
     public ReadOnlyReactiveProperty<bool> crouch => _crouch;
