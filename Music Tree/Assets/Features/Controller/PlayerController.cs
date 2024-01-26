@@ -49,9 +49,18 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
     public IObservable<Unit> Landed { get; }
     public IObservable<Unit> Jumped { get; }
     public IObservable<Unit> Stepped { get; }
-    
+
+    private ReactiveProperty<bool> _isOnStage = new(false);
+    private bool isEnterStage = false;
+    private ReactiveProperty<bool> _isRandomGitarTriggered = new(false);
+    public ReactiveProperty<bool> isRandomGitarTriggered => _isRandomGitarTriggered;
+
+    public ReactiveProperty<bool> IsOnStage => _isOnStage;
+
     //singleton
     private static PlayerController _instance;
+
+    public static PlayerController Instance => _instance;
 
     private void Awake()
     {
@@ -221,7 +230,23 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         
         _doingCrouch = false;
     }
-    
+
+    private void Update()
+    {
+        if (!isEnterStage && transform.position.magnitude < 30)
+        {
+            Debug.Log("ddd");
+            isEnterStage = true;
+            IsOnStage.Value = true;
+        }
+        else if (isEnterStage && transform.position.magnitude >= 30)
+        {
+            Debug.Log("123");
+            isEnterStage = false;
+            IsOnStage.Value = false;
+        }
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.transform.CompareTag("Platform"))
@@ -232,6 +257,9 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
         {
             SceneManager.LoadScene("SampleScene");
             StartCoroutine(SetPos());
+        } else if (hit.transform.CompareTag("Random Gitar"))
+        {
+            _isRandomGitarTriggered.Value = !_isRandomGitarTriggered.Value;
         }
     }
     
@@ -239,6 +267,14 @@ public class PlayerController : MonoBehaviour, ICharacterSignals
     {
         yield return null;
         yield return null;
-        _characterController.transform.position = new Vector3(0, 2, 0);
+        if (gameObject.scene.Equals("SampleScene"))
+        {
+            _characterController.transform.position = new Vector3(40, 0.7f, 0);
+            _characterController.transform.localRotation = Quaternion.Euler(0, -90, 0);
+        }
+        else
+        { 
+            _characterController.transform.position = new Vector3(0, 2, 0);
+        }
     }
 }
